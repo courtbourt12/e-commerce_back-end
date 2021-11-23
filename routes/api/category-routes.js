@@ -4,10 +4,11 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  Category.findAll().then((data) => {
+  Category.findAll({
+    include: [Product],
+  }).then((data) => {
     res.json(data)
   })
-  // be sure to include its associated Products
 });
 
 router.get('/:id', (req, res) => {
@@ -15,10 +16,10 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
+    include: [Product],
   }).then((data) => {
     res.json(data);
   })
-  // be sure to include its associated Products
 });
 
 router.post('/', (req, res) => {
