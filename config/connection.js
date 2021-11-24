@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
 {
   host: "localhost",
   dialect: "mysql",
-  port: "3001"
+  dialectOptions: {         decimalNumbers: true,       },
 }
 );
 
